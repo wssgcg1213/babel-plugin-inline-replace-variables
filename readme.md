@@ -1,4 +1,5 @@
 # babel-plugin-inline-replace-variables
+[![Build Status](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables.svg?branch=master)](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables)
 
 ## Usage
 
