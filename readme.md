@@ -1,12 +1,12 @@
-# babel-plugin-inline-replace-varibles
+# babel-plugin-inline-replace-variables
 
 ## Usage
 
 ```bash
-npm i babel-plugin-inline-replace-varibles --save-dev
+npm i babel-plugin-inline-replace-variables --save-dev
 ```
 
-configure in .babelrc or any babel queries:
+configure in .babelrc(should transfer to json format) or any babel queries:
 ```javascript
 {
   plugins: [
@@ -17,6 +17,8 @@ configure in .babelrc or any babel queries:
   ]
 }
 ```
+
+#### EFFECT:
 
 ```javascript
 if (__SERVER__) {
@@ -35,6 +37,16 @@ if (true) {
   alert('this is browser')
 }
 ```
+
+
+
+#### tip:
+
+Version 1.0.1 fix the misspelling of 'varibles' to 'variables'
+
+so `babel-plugin-inline-replace-varibles` is deprecated, you should instead it of `babel-plugin-inline-replace-variables`
+
+
 
 CONTACT: https://github.com/wssgcg1213
 
