@@ -1,16 +1,17 @@
 {
   "name": "babel-plugin-inline-replace-variables",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "babel plugin to inline replace variables",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src/ -d lib/",
     "test": "mocha -u bdd --compilers js:babel-core/register"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com/wssgcg1213/babel-plugin-inline-replace-variables"
+  "repository": "https://github.com/wssgcg1213/babel-plugin-inline-replace-variables.git",
+  "bugs": {
+    "url": "https://github.com/wssgcg1213/babel-plugin-inline-replace-variables/issues"
   },
+  "homepage": "https://github.com/wssgcg1213/babel-plugin-inline-replace-variables",
   "keywords": [
     "babel",
     "plugin",
