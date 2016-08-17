@@ -11,9 +11,9 @@ configure in .babelrc(should transfer to json format) or any babel queries:
 ```javascript
 {
   plugins: [
-    ['inline-replace-varibles', {
-      __SERVER__: true,
-      __VERSION__: "v1.2.3"
+    ["inline-replace-variables", {
+      "__SERVER__": true,
+      "__VERSION__": "v1.2.3"
     }]
   ]
 }
