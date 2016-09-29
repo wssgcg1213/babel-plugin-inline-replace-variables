@@ -1,6 +1,7 @@
 # babel-plugin-inline-replace-variables
 [![Build Status](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables.svg?branch=master)](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables)
 
+It replace an Identifier to a literial (LVal), if you want to transfrom a identifier to another identifier, you can see: [babel-plugin-replace-identifiers](https://github.com/wssgcg1213/babel-plugin-replace-identifiers)
 ## Usage
 
 ```bash
@@ -11,9 +12,9 @@ configure in .babelrc(should transfer to json format) or any babel queries:
 ```javascript
 {
   plugins: [
-    ['inline-replace-varibles', {
-      __SERVER__: true,
-      __VERSION__: "v1.2.3"
+    ['inline-replace-variables', {
+      "__SERVER__": true,
+      "__VERSION__": "v1.2.3"
     }]
   ]
 }
