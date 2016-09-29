@@ -24,7 +24,7 @@ describe('babel-plugin-inline-replace-varibles', () => {
             }).code
               .should.be.equal(`
 if (true) {
-    console.log('this is server, version: %s', "v1.2.3");
+    console.log('this is server, version: %s', 'v1.2.3');
 } else {
     alert('this is browser');
 }`)

@@ -4,10 +4,19 @@
  * @Email i@zeroling.com
  */
 
-export default ({types}) => ({
+export default ({types: t}) => ({
   visitor: {
     Identifier (path, state) {
-      path.node.name = JSON.stringify(state.opts[path.node.name]) || path.node.name
+      const replacement = state.opts[path.node.name]
+      if (replacement !== undefined) {
+        const type = typeof replacement
+        if (type === 'boolean') {
+          path.replaceWith(t.booleanLiteral(replacement))
+        } else { // treat as string
+          const str = String(replacement)
+          path.replaceWith(t.stringLiteral(str))
+        }
+      }
     }
   }
 });
