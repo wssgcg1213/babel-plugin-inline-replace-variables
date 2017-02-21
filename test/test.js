@@ -59,3 +59,25 @@ if (foo.bar.__SERVER__) {
     });
 
 });
+
+describe('non-globals', () => {
+    describe(`transform`, () => {
+        it(`__SERVER__ should NOT be replaced to true`, () => {
+            babel.transform(`
+                function foo(__SERVER__) {
+                    console.log('this is a normal argument', __SERVER__)
+                }
+            `, {
+                plugins: [[plugin, {
+                    __SERVER__: true,
+                    __VERSION__: "v1.2.3"
+                }]]
+            }).code
+              .should.be.equal(`
+function foo(__SERVER__) {
+    console.log('this is a normal argument', __SERVER__);
+}`)
+        });
+    });
+
+});
