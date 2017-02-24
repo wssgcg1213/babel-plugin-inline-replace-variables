@@ -2,7 +2,7 @@
   "name": "babel-plugin-inline-replace-variables",
   "version": "1.2.1",
   "description": "babel plugin to inline replace variables",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "babel src/ -d lib/",
     "test": "mocha -u bdd --compilers js:babel-core/register"
