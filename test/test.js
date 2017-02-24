@@ -81,3 +81,53 @@ function foo(__SERVER__) {
     });
 
 });
+
+describe('ignore class methods', () => {
+    describe(`transform`, () => {
+        it(`__SERVER__ should NOT be replaced`, () => {
+            babel.transform(`
+                export default class Hello {
+                  __SERVER__(foo) {
+                    this.foo = foo;
+                  }
+                }
+            `, {
+                plugins: [[plugin, {
+                    __SERVER__: true,
+                    __VERSION__: "v1.2.3"
+                }]]
+            }).code
+              .should.be.equal(`
+export default class Hello {
+  __SERVER__(foo) {
+    this.foo = foo;
+  }
+}`)
+        });
+
+    });
+
+});
+
+describe('object own properties', () => {
+    describe(`transform`, () => {
+        it(`only own properties should be replaced`, () => {
+            babel.transform(`
+                var foo = constructor;
+                var bar = isPrototypeOf;
+                var baz = __SERVER__;
+            `, {
+                plugins: [[plugin, {
+                    __SERVER__: true,
+                    __VERSION__: "v1.2.3"
+                }]]
+            }).code
+              .should.be.equal(`
+var foo = constructor;
+var bar = isPrototypeOf;
+var baz = true;`)
+        });
+
+    });
+
+});

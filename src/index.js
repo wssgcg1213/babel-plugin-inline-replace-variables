@@ -10,7 +10,13 @@ export default ({types: t}) => ({
       if (path.parent.type === 'MemberExpression') {
         return;
       }
+      if (path.parent.type === 'ClassMethod') {
+        return;
+      }
       if (path.isPure()) {
+        return;
+      }
+      if (!state.opts.hasOwnProperty(path.node.name)) {
         return;
       }
       const replacement = state.opts[path.node.name]
