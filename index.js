@@ -4,7 +4,7 @@
  * @Email i@zeroling.com
  */
 
-export default ({types: t}) => ({
+module.exports = ({types: t}) => ({
   visitor: {
     Identifier(path, state) {
       if (path.parent.type === 'MemberExpression') {
