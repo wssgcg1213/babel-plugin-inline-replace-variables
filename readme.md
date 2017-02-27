@@ -50,6 +50,6 @@ so `babel-plugin-inline-replace-varibles` is deprecated, you should instead it o
 
 
 
-CONTACT: https://github.com/wssgcg1213
+Authors: https://github.com/wssgcg1213, https://github.com/rtsao
 
 
