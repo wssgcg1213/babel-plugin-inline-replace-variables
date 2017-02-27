@@ -4,8 +4,8 @@
  * @Email i@zeroling.com
  */
 const babel = require('babel-core');
-import 'should';
-import plugin from '../src';
+require('should');
+const plugin = require('../');
 
 describe('simple', () => {
     describe(`transform`, () => {
