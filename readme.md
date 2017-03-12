@@ -1,4 +1,6 @@
 # babel-plugin-inline-replace-variables
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/wssgcg1213/babel-plugin-inline-replace-variables.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables.svg?branch=master)](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables)
 
 It replace an Identifier to a literial (LVal), if you want to transfrom a identifier to another identifier, you can see: [babel-plugin-replace-identifiers](https://github.com/wssgcg1213/babel-plugin-replace-identifiers)
