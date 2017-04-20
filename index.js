@@ -26,6 +26,8 @@ module.exports = (babel) => {
           const type = typeof replacement
           if (type === 'boolean') {
             path.replaceWith(t.booleanLiteral(replacement))
+          } else if (type === 'object' && t.isNode(replacement)) {
+            path.replaceWith(replacement);
           } else { // treat as string
             const str = String(replacement)
             path.replaceWith(t.stringLiteral(str))

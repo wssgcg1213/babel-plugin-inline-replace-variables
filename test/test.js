@@ -4,6 +4,7 @@
  * @Email i@zeroling.com
  */
 const babel = require('babel-core');
+const t = require('babel-types');
 require('should');
 const plugin = require('../');
 
@@ -33,6 +34,33 @@ if (true) {
 
 });
 
+describe('node replacement', () => {
+    describe(`transform`, () => {
+        const nodeEnv = t.memberExpression(t.memberExpression(t.identifier('process'), t.identifier('env')), t.identifier('NODE_ENV'));
+        const nodeEnvCheck = t.binaryExpression('!==', nodeEnv, t.stringLiteral('production'));
+
+        it(`__DEV__ should be replaced to expression`, () => {
+            babel.transform(`
+                if (__DEV__) {
+                    console.log('development')
+                } else {
+                    console.log('production')
+                }
+            `, {
+                plugins: [[plugin, {
+                    __DEV__: nodeEnvCheck,
+                }]]
+            }).code
+              .should.be.equal(`
+if (process.env.NODE_ENV !== 'production') {
+    console.log('development');
+} else {
+    console.log('production');
+}`)
+        });
+    });
+
+});
 
 describe('member expression', () => {
     describe(`transform`, () => {
