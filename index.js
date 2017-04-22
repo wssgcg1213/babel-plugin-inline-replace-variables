@@ -3,6 +3,7 @@
  * @Author Ling.
  * @Email i@zeroling.com
  */
+'use strict'
 const babylon = require('babylon')
 
 module.exports = (babel) => {
