@@ -148,12 +148,11 @@ describe('support node replacement', () => {
             }
         }]]
     }).code.should.be.equal(`
-        if (process.env.NODE_ENV) {
-          console.log('this is dev');
-        } else {
-          console.log('this is prod');
-        }
-    `);
+if (process.env.NODE_ENV) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
   });
 
   it('__DEV__ should be replaced by process.env.NODE_ENV', () => {
@@ -168,12 +167,11 @@ describe('support node replacement', () => {
             __DEV__: babylon.parseExpression('process.env.NODE_ENV')
         }]]
     }).code.should.be.equal(`
-        if (process.env.NODE_ENV) {
-          console.log('this is dev');
-        } else {
-          console.log('this is prod');
-        }
-    `);
+if (process.env.NODE_ENV) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
   });
 });
 
