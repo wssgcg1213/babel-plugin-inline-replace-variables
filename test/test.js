@@ -4,6 +4,7 @@
  * @Email i@zeroling.com
  */
 const babel = require('babel-core');
+const babylon = require('babylon');
 require('should');
 const plugin = require('../');
 
@@ -129,5 +130,49 @@ var baz = true;`)
         });
 
     });
-
 });
+
+describe('support node replacement', () => {
+  it('__DEV__ should be replaced by process.env.NODE_ENV', () => {
+    babel.transform(`
+        if (__DEV__) {
+          console.log('this is dev');
+        } else {
+          console.log('this is prod');
+        }
+    `, {
+        plugins: [[plugin, {
+            __DEV__: {
+              type: 'node',
+              replacement: 'process.env.NODE_ENV'
+            }
+        }]]
+    }).code.should.be.equal(`
+if (process.env.NODE_ENV) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
+  });
+
+  it('__DEV__ should be replaced by process.env.NODE_ENV', () => {
+    babel.transform(`
+        if (__DEV__) {
+          console.log('this is dev');
+        } else {
+          console.log('this is prod');
+        }
+    `, {
+        plugins: [[plugin, {
+            __DEV__: babylon.parseExpression('process.env.NODE_ENV')
+        }]]
+    }).code.should.be.equal(`
+if (process.env.NODE_ENV) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
+  });
+});
+
+

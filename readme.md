@@ -1,4 +1,7 @@
+
+
 # babel-plugin-inline-replace-variables
+
 [![Build Status](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables.svg?branch=master)](https://travis-ci.org/wssgcg1213/babel-plugin-inline-replace-variables)
 
 It replace an Identifier to a literial (LVal), if you want to transfrom a identifier to another identifier, you can see: [babel-plugin-replace-identifiers](https://github.com/wssgcg1213/babel-plugin-replace-identifiers)
@@ -39,6 +42,57 @@ if (true) {
   alert('this is browser')
 }
 ```
+
+### Support Replace With Expression:
+
+```js
+{
+  plugins: [
+    ['inline-replace-variables', {
+      "__TYPE__": {
+        type: 'node',
+        replacement: 'process.env.NODE_ENV'
+      }
+    }]
+  ]
+}
+```
+
+#### EFFECT
+```js
+if (__TYPE__) {
+  // code
+}
+```
+
+to
+
+```js
+if (process.env.NODE_ENV) {
+  // code
+}
+```
+
+
+
+### Also support babel AST Node
+
+```js
+const t = require('babel-types');
+const nodeEnv = t.memberExpression(t.memberExpression(t.identifier('process'), t.identifier('env')), t.identifier('NODE_ENV'));
+
+{
+  plugins: [
+    ['inline-replace-variables', {
+      "__TYPE__": nodeEnv
+    }]
+  ]
+}
+```
+
+#### EFFECT
+
+The effect is the same above.
 
 
 

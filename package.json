@@ -19,7 +19,9 @@
   ],
   "author": "Ling.",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "babylon": "^6.17.0"
+  },
   "devDependencies": {
     "babel-core": "^6.8.0",
     "mocha": "^2.4.5",
