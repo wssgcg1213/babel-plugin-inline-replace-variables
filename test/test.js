@@ -34,6 +34,33 @@ if (true) {
 
 });
 
+describe('simple', () => {
+    describe(`transform`, () => {
+        it(`__SERVER__ should be replaced to false`, () => {
+            babel.transform(`
+                if (__SERVER__) {
+                    console.log('this is server, version: %s', __VERSION__)
+                } else {
+                    alert('this is browser')
+                }
+            `, {
+                plugins: [[plugin, {
+                    __SERVER__: false,
+                    __VERSION__: "v1.2.3"
+                }]]
+            }).code
+              .should.be.equal(`
+if (false) {
+    console.log('this is server, version: %s', 'v1.2.3');
+} else {
+    alert('this is browser');
+}`)
+        });
+    });
+
+});
+
+
 
 describe('member expression', () => {
     describe(`transform`, () => {
@@ -174,5 +201,3 @@ if (process.env.NODE_ENV) {
 }`);
   });
 });
-
-

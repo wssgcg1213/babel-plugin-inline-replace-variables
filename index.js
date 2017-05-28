@@ -27,9 +27,6 @@ module.exports = (babel) => {
           return;
         }
         let replacementDescriptor = state.opts[path.node.name]
-        if (!replacementDescriptor) {
-          return
-        }
 
         const type = typeof replacementDescriptor
         if (type === 'string' || type === 'boolean') {
@@ -42,7 +39,7 @@ module.exports = (babel) => {
             type: 'node',
             replacement: replacementDescriptor
           }
-        } else if (type === 'object' 
+        } else if (type === 'object'
           && replacementDescriptor.type === 'node'
           && typeof replacementDescriptor.replacement === 'string') {
           replacementDescriptor.replacement = parseMap[replacementDescriptor.replacement]
