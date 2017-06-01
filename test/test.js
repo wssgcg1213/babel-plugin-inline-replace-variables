@@ -201,3 +201,62 @@ if (process.env.NODE_ENV) {
 }`);
   });
 });
+
+describe('support false value replacement', () => {
+  it('__DEV__ should be replaced by false', () => {
+    babel.transform(`
+        if (__DEV__) {
+          console.log('this is dev');
+        } else {
+          console.log('this is prod');
+        }
+    `, {
+        plugins: [[plugin, {
+            __DEV__: false
+        }]]
+    }).code.should.be.equal(`
+if (false) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
+  });
+
+  it('__DEV__ should be replaced by undefined', () => {
+    babel.transform(`
+        if (__DEV__) {
+          console.log('this is dev');
+        } else {
+          console.log('this is prod');
+        }
+    `, {
+        plugins: [[plugin, {
+            __DEV__: undefined
+        }]]
+    }).code.should.be.equal(`
+if (undefined) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
+  });
+
+  it('__DEV__ should be replaced by null', () => {
+    babel.transform(`
+        if (__DEV__) {
+          console.log('this is dev');
+        } else {
+          console.log('this is prod');
+        }
+    `, {
+        plugins: [[plugin, {
+            __DEV__: null
+        }]]
+    }).code.should.be.equal(`
+if (null) {
+  console.log('this is dev');
+} else {
+  console.log('this is prod');
+}`);
+  });
+});

@@ -27,6 +27,9 @@ module.exports = (babel) => {
           return;
         }
         let replacementDescriptor = state.opts[path.node.name]
+        if (replacementDescriptor === undefined || replacementDescriptor === null) {
+          replacementDescriptor = t.identifier(String(replacementDescriptor))
+        }
 
         const type = typeof replacementDescriptor
         if (type === 'string' || type === 'boolean') {
